@@ -14,10 +14,11 @@ def menu():
     print("5-Iniciar Urna")
     print("6-Testar Urna")
     print("7-Emitir Zerisima")
-    print("8-Sair")
-    op = int(input("Digite a opcao [1 a 8]? "))
-    while op not in range(1, 8):
-        op = int(input("Digite a opcao [1 a 7]? "))
+    print("8-Encerrar Urna")
+    print("9-Sair")
+    op = int(input("Digite a opcao [1 a 9]? "))
+    while op not in range(1, 10):
+        op = int(input("Digite a opcao [1 a 9]? "))
     return op
 
 def inserir_eleitor(eleitores):
@@ -88,8 +89,8 @@ if __name__ == "__main__":
     try:
         print("Carregando arquivo de eleitores ...")
 
-        with open(FILE_ELEITORES, 'rb') as arquivo:eleicoes
-        eleitores = pickle.load(arquivo)
+        with open(FILE_ELEITORES, 'rb') as arquivo:
+            eleitores = pickle.load(arquivo)
     except FileNotFoundError as fnfe:
         print(fnfe)
         print("Arquivo nao encontrado, nenhum eleitor carregado!")
@@ -105,7 +106,7 @@ if __name__ == "__main__":
         print("Arquivo nao encontrado, nenhum candidato carregado!")
 
     opcao = 1
-    while opcao in range(1,8):
+    while opcao in range(1, 10):
         try:
             opcao = menu()
 
@@ -125,6 +126,8 @@ if __name__ == "__main__":
             elif opcao == 7:
                 gerenciar_urna.emitir_zerisima(urna)
             elif opcao == 8:
+                gerenciar_urna.fechar(urna)
+            elif opcao == 9:
                 print("Saindo!")
                 break
         except Exception as e:
